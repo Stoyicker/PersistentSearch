@@ -1,7 +1,6 @@
 .gradle
 /local.properties
-/.idea/workspace.xml
-/.idea/libraries
-.DS_Store
+*.iml
+/.idea/
+README.md
 /build
-gradle-mvn-push.gradle
