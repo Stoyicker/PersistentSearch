@@ -23,12 +23,12 @@ import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.support.annotation.NonNull;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.animation.Interpolator;
 
 import com.nineoldandroids.animation.Animator;
-
 import com.quinny898.library.persistentsearch.R;
 
 import static com.balysv.materialmenu.MaterialMenuDrawable.DEFAULT_COLOR;
@@ -82,7 +82,7 @@ public class MaterialMenuView extends View implements MaterialMenu {
     }
 
     @Override
-    public void draw(Canvas canvas) {
+    public void draw(final @NonNull Canvas canvas) {
         super.draw(canvas);
         if (getPaddingLeft() != 0 || getPaddingTop() != 0) {
             int saveCount = canvas.getSaveCount();
@@ -207,9 +207,9 @@ public class MaterialMenuView extends View implements MaterialMenu {
     private void adjustDrawablePadding() {
         if (drawable != null) {
             drawable.setBounds(
-                0, 0,
-                drawable.getIntrinsicWidth() + getPaddingLeft() + getPaddingRight(),
-                drawable.getIntrinsicHeight() + getPaddingTop() + getPaddingBottom()
+                    0, 0,
+                    drawable.getIntrinsicWidth() + getPaddingLeft() + getPaddingRight(),
+                    drawable.getIntrinsicHeight() + getPaddingTop() + getPaddingBottom()
             );
         }
     }
@@ -231,7 +231,7 @@ public class MaterialMenuView extends View implements MaterialMenu {
         }
 
         @Override
-        public void writeToParcel(Parcel out, int flags) {
+        public void writeToParcel(final @NonNull Parcel out, int flags) {
             super.writeToParcel(out, flags);
             out.writeString(state.name());
         }

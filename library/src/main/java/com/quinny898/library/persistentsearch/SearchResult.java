@@ -8,14 +8,15 @@ public class SearchResult {
 
     /**
      * Create a search result with text and an icon
-     * @param title
-     * @param icon
+     *
+     * @param title {@link String} The title
+     * @param icon  {@link Drawable} The icon
      */
-    public SearchResult(String title, Drawable icon) {
-       this.title = title;
-       this.icon = icon;
+    public SearchResult(final String title, final Drawable icon) {
+        this.title = title;
+        this.icon = icon;
     }
-    
+
     /**
      * Return the title of the result
      */
@@ -23,5 +24,5 @@ public class SearchResult {
     public String toString() {
         return title;
     }
-    
+
 }

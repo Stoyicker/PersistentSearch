@@ -121,28 +121,28 @@ public class MaterialMenuDrawable extends Drawable implements Animatable {
         }
     }
 
-    public static final int DEFAULT_COLOR              = Color.WHITE;
-    public static final int DEFAULT_SCALE              = 1;
+    public static final int DEFAULT_COLOR = Color.WHITE;
+    public static final int DEFAULT_SCALE = 1;
     public static final int DEFAULT_TRANSFORM_DURATION = 800;
-    public static final int DEFAULT_PRESSED_DURATION   = 400;
+    public static final int DEFAULT_PRESSED_DURATION = 400;
 
-    private static final int BASE_DRAWABLE_WIDTH  = 40;
+    private static final int BASE_DRAWABLE_WIDTH = 40;
     private static final int BASE_DRAWABLE_HEIGHT = 40;
-    private static final int BASE_ICON_WIDTH      = 20;
-    private static final int BASE_CIRCLE_RADIUS   = 18;
+    private static final int BASE_ICON_WIDTH = 20;
+    private static final int BASE_CIRCLE_RADIUS = 18;
 
     private static final float ARROW_MID_LINE_ANGLE = 180;
     private static final float ARROW_TOP_LINE_ANGLE = 135;
     private static final float ARROW_BOT_LINE_ANGLE = 225;
-    private static final float X_TOP_LINE_ANGLE     = 44;
-    private static final float X_BOT_LINE_ANGLE     = -44;
-    private static final float X_ROTATION_ANGLE     = 90;
-    private static final float CHECK_MIDDLE_ANGLE   = 135;
-    private static final float CHECK_BOTTOM_ANGLE   = -90;
+    private static final float X_TOP_LINE_ANGLE = 44;
+    private static final float X_BOT_LINE_ANGLE = -44;
+    private static final float X_ROTATION_ANGLE = 90;
+    private static final float CHECK_MIDDLE_ANGLE = 135;
+    private static final float CHECK_BOTTOM_ANGLE = -90;
 
     private static final float TRANSFORMATION_START = 0;
-    private static final float TRANSFORMATION_MID   = 1.0f;
-    private static final float TRANSFORMATION_END   = 2.0f;
+    private static final float TRANSFORMATION_MID = 1.0f;
+    private static final float TRANSFORMATION_END = 2.0f;
 
     private static final int DEFAULT_CIRCLE_ALPHA = 200;
 
@@ -151,11 +151,10 @@ public class MaterialMenuDrawable extends Drawable implements Animatable {
     private final float dip2;
     private final float dip3;
     private final float dip4;
-    private final float dip6;
     private final float dip8;
 
-    private final int   width;
-    private final int   height;
+    private final int width;
+    private final int height;
     private final float strokeWidth;
     private final float iconWidth;
     private final float topPadding;
@@ -166,31 +165,33 @@ public class MaterialMenuDrawable extends Drawable implements Animatable {
 
     private final Object lock = new Object();
 
-    private final Paint iconPaint   = new Paint();
+    private final Paint iconPaint = new Paint();
     private final Paint circlePaint = new Paint();
 
-    private float   transformationValue   = 0f;
-    private float   pressedProgressValue  = 0f;
+    private float transformationValue = 0f;
+    private float pressedProgressValue = 0f;
     private boolean transformationRunning = false;
 
-    private IconState      currentIconState = IconState.BURGER;
-    private AnimationState animationState   = AnimationState.BURGER_ARROW;
+    private IconState currentIconState = IconState.BURGER;
+    private AnimationState animationState = AnimationState.BURGER_ARROW;
 
     private IconState animatingIconState;
-    private boolean   drawTouchCircle;
-    private boolean   neverDrawTouch;
-    private boolean   rtlEnabled;
+    private boolean drawTouchCircle;
+    private boolean neverDrawTouch;
+    private boolean rtlEnabled;
 
-    private ObjectAnimator   transformation;
-    private ObjectAnimator   pressedCircle;
+    private ObjectAnimator transformation;
+    private ObjectAnimator pressedCircle;
     private AnimatorListener animatorListener;
 
     private MaterialMenuState materialMenuState;
 
+    @SuppressWarnings("unused")
     public MaterialMenuDrawable(Context context, int color, Stroke stroke) {
         this(context, color, stroke, DEFAULT_SCALE, DEFAULT_TRANSFORM_DURATION, DEFAULT_PRESSED_DURATION);
     }
 
+    @SuppressWarnings("unused")
     public MaterialMenuDrawable(Context context, int color, Stroke stroke, int transformDuration, int pressedDuration) {
         this(context, color, stroke, DEFAULT_SCALE, transformDuration, pressedDuration);
     }
@@ -202,7 +203,6 @@ public class MaterialMenuDrawable extends Drawable implements Animatable {
         this.dip2 = dpToPx(resources, 2) * scale;
         this.dip3 = dpToPx(resources, 3) * scale;
         this.dip4 = dpToPx(resources, 4) * scale;
-        this.dip6 = dpToPx(resources, 6) * scale;
         this.dip8 = dpToPx(resources, 8) * scale;
         this.diph = dip1 / 2;
 
@@ -223,13 +223,12 @@ public class MaterialMenuDrawable extends Drawable implements Animatable {
     }
 
     private MaterialMenuDrawable(int color, Stroke stroke, long transformDuration, long pressedDuration,
-        int width, int height, float iconWidth, float circleRadius, float strokeWidth, float dip1
+                                 int width, int height, float iconWidth, float circleRadius, float strokeWidth, float dip1
     ) {
         this.dip1 = dip1;
         this.dip2 = dip1 * 2;
         this.dip3 = dip1 * 3;
         this.dip4 = dip1 * 4;
-        this.dip6 = dip1 * 6;
         this.dip8 = dip1 * 8;
         this.diph = dip1 / 2;
         this.stroke = stroke;
@@ -265,7 +264,8 @@ public class MaterialMenuDrawable extends Drawable implements Animatable {
      * Drawing
      */
 
-    @Override public void draw(Canvas canvas) {
+    @Override
+    public void draw(Canvas canvas) {
         final float ratio = transformationValue <= 1 ? transformationValue : 2 - transformationValue;
 
         if (rtlEnabled) {
@@ -589,15 +589,18 @@ public class MaterialMenuDrawable extends Drawable implements Animatable {
         return 0;
     }
 
-    @Override public void setAlpha(int alpha) {
+    @Override
+    public void setAlpha(int alpha) {
         iconPaint.setAlpha(alpha);
     }
 
-    @Override public void setColorFilter(ColorFilter cf) {
+    @Override
+    public void setColorFilter(ColorFilter cf) {
         iconPaint.setColorFilter(cf);
     }
 
-    @Override public int getOpacity() {
+    @Override
+    public int getOpacity() {
         return PixelFormat.TRANSPARENT;
     }
 
@@ -635,6 +638,7 @@ public class MaterialMenuDrawable extends Drawable implements Animatable {
         animatorListener = listener;
     }
 
+    @SuppressWarnings("unused")
     public void setNeverDrawTouch(boolean neverDrawTouch) {
         this.neverDrawTouch = neverDrawTouch;
     }
@@ -685,7 +689,7 @@ public class MaterialMenuDrawable extends Drawable implements Animatable {
     public IconState setTransformationOffset(AnimationState animationState, float offset) {
         if (offset < TRANSFORMATION_START || offset > TRANSFORMATION_END) {
             throw new IllegalArgumentException(
-                String.format("Value must be between %s and %s", TRANSFORMATION_START, TRANSFORMATION_END)
+                    String.format("Value must be between %s and %s", TRANSFORMATION_START, TRANSFORMATION_END)
             );
         }
 
@@ -714,7 +718,7 @@ public class MaterialMenuDrawable extends Drawable implements Animatable {
      * Animations
      */
     private Property<MaterialMenuDrawable, Float> transformationProperty
-        = new Property<MaterialMenuDrawable, Float>(Float.class, "transformation") {
+            = new Property<MaterialMenuDrawable, Float>(Float.class, "transformation") {
         @Override
         public Float get(MaterialMenuDrawable object) {
             return object.getTransformationValue();
@@ -727,7 +731,7 @@ public class MaterialMenuDrawable extends Drawable implements Animatable {
     };
 
     private Property<MaterialMenuDrawable, Float> pressedProgressProperty
-        = new Property<MaterialMenuDrawable, Float>(Float.class, "pressedProgress") {
+            = new Property<MaterialMenuDrawable, Float>(Float.class, "pressedProgress") {
         @Override
         public Float get(MaterialMenuDrawable object) {
             return object.getPressedProgress();
@@ -763,7 +767,8 @@ public class MaterialMenuDrawable extends Drawable implements Animatable {
         transformation.setInterpolator(new DecelerateInterpolator(3));
         transformation.setDuration(transformDuration);
         transformation.addListener(new AnimatorListenerAdapter() {
-            @Override public void onAnimationEnd(Animator animation) {
+            @Override
+            public void onAnimationEnd(Animator animation) {
                 transformationRunning = false;
                 setIconState(animatingIconState);
             }
@@ -774,11 +779,13 @@ public class MaterialMenuDrawable extends Drawable implements Animatable {
         pressedCircle.setDuration(pressedDuration);
         pressedCircle.setInterpolator(new DecelerateInterpolator());
         pressedCircle.addListener(new AnimatorListenerAdapter() {
-            @Override public void onAnimationEnd(Animator animation) {
+            @Override
+            public void onAnimationEnd(Animator animation) {
                 pressedProgressValue = 0;
             }
 
-            @Override public void onAnimationCancel(Animator animation) {
+            @Override
+            public void onAnimationCancel(Animator animation) {
                 pressedProgressValue = 0;
             }
         });
@@ -825,11 +832,12 @@ public class MaterialMenuDrawable extends Drawable implements Animatable {
         }
 
         throw new IllegalStateException(
-            String.format("Animating from %s to %s is not supported", currentIconState, animatingIconState)
+                String.format("Animating from %s to %s is not supported", currentIconState, animatingIconState)
         );
     }
 
-    @Override public void start() {
+    @Override
+    public void start() {
         if (transformationRunning) return;
 
         if (animatingIconState != null && animatingIconState != currentIconState) {
@@ -837,8 +845,8 @@ public class MaterialMenuDrawable extends Drawable implements Animatable {
 
             final boolean direction = resolveTransformation();
             transformation.setFloatValues(
-                direction ? TRANSFORMATION_START : TRANSFORMATION_MID,
-                direction ? TRANSFORMATION_MID : TRANSFORMATION_END
+                    direction ? TRANSFORMATION_START : TRANSFORMATION_MID,
+                    direction ? TRANSFORMATION_MID : TRANSFORMATION_END
             );
             transformation.start();
         }
@@ -854,7 +862,8 @@ public class MaterialMenuDrawable extends Drawable implements Animatable {
         invalidateSelf();
     }
 
-    @Override public void stop() {
+    @Override
+    public void stop() {
         if (isRunning() && transformation.isRunning()) {
             transformation.end();
         } else {
@@ -863,7 +872,8 @@ public class MaterialMenuDrawable extends Drawable implements Animatable {
         }
     }
 
-    @Override public boolean isRunning() {
+    @Override
+    public boolean isRunning() {
         return transformationRunning;
     }
 
@@ -899,8 +909,8 @@ public class MaterialMenuDrawable extends Drawable implements Animatable {
         @Override
         public Drawable newDrawable() {
             MaterialMenuDrawable drawable = new MaterialMenuDrawable(
-                circlePaint.getColor(), stroke, transformation.getDuration(),
-                pressedCircle.getDuration(), width, height, iconWidth, circleRadius, strokeWidth, dip1
+                    circlePaint.getColor(), stroke, transformation.getDuration(),
+                    pressedCircle.getDuration(), width, height, iconWidth, circleRadius, strokeWidth, dip1
             );
             drawable.setIconState(animatingIconState != null ? animatingIconState : currentIconState);
             drawable.setRTLEnabled(rtlEnabled);
