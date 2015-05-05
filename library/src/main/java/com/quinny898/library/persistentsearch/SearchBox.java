@@ -54,7 +54,7 @@ public class SearchBox extends RelativeLayout {
 
     private MaterialMenuView materialMenu;
     private TextView logo;
-    private EditText search;
+    private EditText mEditText;
     private Context context;
     private ListView results;
     private ArrayList<SearchResult> resultList;
@@ -109,7 +109,7 @@ public class SearchBox extends RelativeLayout {
         this.isMic = Boolean.TRUE;
         this.materialMenu = (MaterialMenuView) findViewById(R.id.material_menu_button);
         this.logo = (TextView) findViewById(R.id.logo);
-        this.search = (EditText) findViewById(R.id.search);
+        this.mEditText = (EditText) findViewById(R.id.search);
         this.results = (ListView) findViewById(R.id.results);
         this.context = context;
         this.pb = (ProgressBar) findViewById(R.id.pb);
@@ -144,7 +144,7 @@ public class SearchBox extends RelativeLayout {
             searchRoot.setLayoutTransition(lt);
         }
         searchables = new ArrayList<>();
-        search.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+        mEditText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
                 if (actionId == EditorInfo.IME_ACTION_SEARCH) {
@@ -154,7 +154,7 @@ public class SearchBox extends RelativeLayout {
                 return Boolean.FALSE;
             }
         });
-        search.setOnKeyListener(new OnKeyListener() {
+        mEditText.setOnKeyListener(new OnKeyListener() {
             @Override
             public boolean onKey(View v, int keyCode, KeyEvent event) {
                 if (keyCode == KeyEvent.KEYCODE_ENTER) {
@@ -267,11 +267,11 @@ public class SearchBox extends RelativeLayout {
     }
 
     /**
-     * Hide the search results manually
+     * Hide the mEditText results manually
      */
     @SuppressWarnings("unused")
     public void hideResults() {
-        this.search.setVisibility(View.GONE);
+        this.mEditText.setVisibility(View.GONE);
         this.results.setVisibility(View.GONE);
     }
 
@@ -437,7 +437,7 @@ public class SearchBox extends RelativeLayout {
     }
 
     /**
-     * Set the search listener
+     * Set the mEditText listener
      *
      * @param listener SearchListener
      */
@@ -447,7 +447,7 @@ public class SearchBox extends RelativeLayout {
     }
 
     /**
-     * Set whether to search without suggestions being available (default is Boolean.TRUE). Disable if your app only works with provided options
+     * Set whether to mEditText without suggestions being available (default is Boolean.TRUE). Disable if your app only works with provided options
      *
      * @param state Whether to show
      */
@@ -463,12 +463,12 @@ public class SearchBox extends RelativeLayout {
      */
     @SuppressWarnings("unused")
     public void setMaxLength(int length) {
-        search.setFilters(new InputFilter[]{new InputFilter.LengthFilter(
+        mEditText.setFilters(new InputFilter[]{new InputFilter.LengthFilter(
                 length)});
     }
 
     /**
-     * Set hint of the search box
+     * Set hint of the mEditText box
      *
      * @param text Text
      */
@@ -493,7 +493,7 @@ public class SearchBox extends RelativeLayout {
      * @return Text
      */
     public String getSearchText() {
-        return search.getText().toString();
+        return mEditText.getText().toString();
     }
 
     /**
@@ -502,7 +502,7 @@ public class SearchBox extends RelativeLayout {
      * @param text Text
      */
     public void setSearchString(String text) {
-        search.setText(text);
+        mEditText.setText(text);
     }
 
     /**
@@ -566,7 +566,7 @@ public class SearchBox extends RelativeLayout {
     @SuppressWarnings("unused")
     public void removeSearchable(final SearchResult searchable) {
         if (searchables.contains(searchable))
-            searchables.remove(new SearchResult(search.getText().toString(), null));
+            searchables.remove(new SearchResult(mEditText.getText().toString(), null));
     }
 
     /**
@@ -575,6 +575,16 @@ public class SearchBox extends RelativeLayout {
     @SuppressWarnings("unused")
     public void clearSearchable() {
         searchables.clear();
+    }
+
+    /**
+     * Sets the input type for the edit text.
+     *
+     * @param method {@link Integer} The new input type.
+     */
+    @SuppressWarnings("unused")
+    public void setInputType(final Integer method) {
+        mEditText.setInputType(method);
     }
 
     /**
@@ -645,12 +655,12 @@ public class SearchBox extends RelativeLayout {
         this.materialMenu.animateState(IconState.ARROW);
         this.logo.setVisibility(View.GONE);
         this.drawerLogo.setVisibility(View.GONE);
-        this.search.setVisibility(View.VISIBLE);
-        search.requestFocus();
+        this.mEditText.setVisibility(View.VISIBLE);
+        mEditText.requestFocus();
         this.results.setVisibility(View.VISIBLE);
         animate = Boolean.TRUE;
         results.setAdapter(new SearchAdapter(context, resultList));
-        search.addTextChangedListener(new TextWatcher() {
+        mEditText.addTextChangedListener(new TextWatcher() {
 
             @Override
             public void afterTextChanged(Editable s) {
@@ -739,7 +749,7 @@ public class SearchBox extends RelativeLayout {
         this.materialMenu.animateState(IconState.BURGER);
         this.logo.setVisibility(View.VISIBLE);
         this.drawerLogo.setVisibility(View.VISIBLE);
-        this.search.setVisibility(View.GONE);
+        this.mEditText.setVisibility(View.GONE);
         this.results.setVisibility(View.GONE);
         if (listener != null)
             listener.onSearchClosed();
@@ -808,7 +818,7 @@ public class SearchBox extends RelativeLayout {
                 @Override
                 public void onClick(View v) {
                     setSearchString(title.getText().toString());
-                    search.setSelection(search.getText().length());
+                    mEditText.setSelection(mEditText.getText().length());
                 }
             });
 
@@ -838,9 +848,9 @@ public class SearchBox extends RelativeLayout {
         void onSearchTermChanged();
 
         /**
-         * Called when a search happens, with a result
+         * Called when a mEditText happens, with a result
          *
-         * @param result {@link String} The result of the search
+         * @param result {@link String} The result of the mEditText
          */
         void onSearch(final String result);
     }
