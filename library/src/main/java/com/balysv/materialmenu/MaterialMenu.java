@@ -28,37 +28,37 @@ import static com.balysv.materialmenu.MaterialMenuDrawable.IconState;
 @SuppressWarnings("unused")
 public interface MaterialMenu {
     /**
-     * Change icon without animation
+     * Change mIcon without animation
      *
-     * @param state new icon state
+     * @param state new mIcon state
      */
     void setState(IconState state);
 
     /**
-     * Return current icon state
+     * Return current mIcon state
      *
-     * @return icon state
+     * @return mIcon state
      */
     IconState getState();
 
     /**
-     * Animate icon to given state.
+     * Animate mIcon to given state.
      *
-     * @param state new icon state
+     * @param state new mIcon state
      */
     void animateState(IconState state);
 
     /**
-     * Animate icon to given state and draw touch circle
+     * Animate mIcon to given state and draw touch circle
      *
-     * @param state new icon state
+     * @param state new mIcon state
      */
     void animatePressedState(IconState state);
 
     /**
-     * Set color of icon
+     * Set color of mIcon
      *
-     * @param color new icon color
+     * @param color new mIcon color
      */
     void setColor(int color);
 
@@ -93,7 +93,7 @@ public interface MaterialMenu {
     /**
      * Enable RTL layout. Flips all icons horizontally
      *
-     * @param rtlEnabled true to enable RTL layout
+     * @param rtlEnabled Boolean.TRUE to enable RTL layout
      */
     void setRTLEnabled(boolean rtlEnabled);
 

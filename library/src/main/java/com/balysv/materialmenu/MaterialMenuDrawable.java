@@ -247,12 +247,12 @@ public class MaterialMenuDrawable extends Drawable implements Animatable {
     }
 
     private void initPaint(int color) {
-        iconPaint.setAntiAlias(true);
+        iconPaint.setAntiAlias(Boolean.TRUE);
         iconPaint.setStyle(Style.STROKE);
         iconPaint.setStrokeWidth(strokeWidth);
         iconPaint.setColor(color);
 
-        circlePaint.setAntiAlias(true);
+        circlePaint.setAntiAlias(Boolean.TRUE);
         circlePaint.setStyle(Style.FILL);
         circlePaint.setColor(color);
         circlePaint.setAlpha(DEFAULT_CIRCLE_ALPHA);
@@ -841,7 +841,7 @@ public class MaterialMenuDrawable extends Drawable implements Animatable {
         if (transformationRunning) return;
 
         if (animatingIconState != null && animatingIconState != currentIconState) {
-            transformationRunning = true;
+            transformationRunning = Boolean.TRUE;
 
             final boolean direction = resolveTransformation();
             transformation.setFloatValues(
@@ -867,7 +867,7 @@ public class MaterialMenuDrawable extends Drawable implements Animatable {
         if (isRunning() && transformation.isRunning()) {
             transformation.end();
         } else {
-            transformationRunning = false;
+            transformationRunning = Boolean.FALSE;
             invalidateSelf();
         }
     }

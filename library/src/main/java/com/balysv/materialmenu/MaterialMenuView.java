@@ -70,7 +70,7 @@ public class MaterialMenuView extends View implements MaterialMenu {
             int transformDuration = attr.getInteger(R.styleable.MaterialMenuView_mm_transformDuration, DEFAULT_TRANSFORM_DURATION);
             int pressedDuration = attr.getInteger(R.styleable.MaterialMenuView_mm_pressedDuration, DEFAULT_PRESSED_DURATION);
             Stroke stroke = Stroke.valueOf(attr.getInteger(R.styleable.MaterialMenuView_mm_strokeWidth, 0));
-            boolean rtlEnabled = attr.getBoolean(R.styleable.MaterialMenuView_mm_rtlEnabled, false);
+            boolean rtlEnabled = attr.getBoolean(R.styleable.MaterialMenuView_mm_rtlEnabled, Boolean.FALSE);
 
             drawable = new MaterialMenuDrawable(context, color, stroke, scale, transformDuration, pressedDuration);
             drawable.setRTLEnabled(rtlEnabled);
@@ -120,13 +120,13 @@ public class MaterialMenuView extends View implements MaterialMenu {
     @Override
     public void animateState(IconState state) {
         currentState = state;
-        drawable.animateIconState(state, false);
+        drawable.animateIconState(state, Boolean.FALSE);
     }
 
     @Override
     public void animatePressedState(IconState state) {
         currentState = state;
-        drawable.animateIconState(state, true);
+        drawable.animateIconState(state, Boolean.TRUE);
     }
 
     @Override
