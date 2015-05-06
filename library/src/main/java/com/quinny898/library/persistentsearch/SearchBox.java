@@ -43,6 +43,7 @@ import com.balysv.materialmenu.MaterialMenuView;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import io.codetail.animation.ReverseInterpolator;
 import io.codetail.animation.SupportAnimator;
@@ -391,8 +392,8 @@ public class SearchBox extends RelativeLayout {
         resultList.clear();
         int count = 0;
         for (int x = 0; x < searchables.size(); x++) {
-            if (searchables.get(x).mTitle.toLowerCase().startsWith(
-                    getSearchText().toLowerCase())
+            if (searchables.get(x).mTitle.toLowerCase(Locale.ENGLISH).startsWith(
+                    getSearchText().toLowerCase(Locale.ENGLISH))
                     && count < 5) {
                 addResult(searchables.get(x));
                 count++;
