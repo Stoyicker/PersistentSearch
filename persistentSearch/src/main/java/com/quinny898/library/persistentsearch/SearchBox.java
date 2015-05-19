@@ -725,7 +725,7 @@ public class SearchBox extends RelativeLayout {
                     .getSystemService(Context.INPUT_METHOD_SERVICE);
             inputMethodManager.toggleSoftInputFromWindow(
                     getApplicationWindowToken(),
-                    InputMethodManager.SHOW_FORCED, 0);
+                    InputMethodManager.SHOW_IMPLICIT, 0);
         }
     }
 
