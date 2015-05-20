@@ -76,7 +76,6 @@ public class SearchBox extends RelativeLayout {
     private Fragment mContainerFragment;
     private android.support.v4.app.Fragment mContainerSupportFragment;
 
-
     /**
      * Create a new searchbox
      *
@@ -265,7 +264,6 @@ public class SearchBox extends RelativeLayout {
         } else {
             openSearch(Boolean.TRUE);
         }
-        searchOpen = !searchOpen;
     }
 
     /**
@@ -708,6 +706,7 @@ public class SearchBox extends RelativeLayout {
                     getApplicationWindowToken(),
                     InputMethodManager.SHOW_IMPLICIT, 0);
         }
+        searchOpen = Boolean.TRUE;
     }
 
     private void setInitialResults() {
@@ -742,6 +741,7 @@ public class SearchBox extends RelativeLayout {
                 .getSystemService(Context.INPUT_METHOD_SERVICE);
         inputMethodManager.hideSoftInputFromWindow(getApplicationWindowToken(),
                 0);
+        searchOpen = Boolean.FALSE;
     }
 
     private void search(String text) {
