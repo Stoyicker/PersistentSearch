@@ -727,7 +727,7 @@ public class SearchBox extends RelativeLayout {
     }
 
 
-    private void closeSearch() {
+    public void closeSearch() {
         this.materialMenu.animateState(IconState.BURGER);
         this.logo.setVisibility(View.VISIBLE);
         this.drawerLogo.setVisibility(View.VISIBLE);
